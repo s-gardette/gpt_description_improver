@@ -8,8 +8,8 @@ class GptDescriptionImprover extends Module
   public function __construct()
   {
     $this->name = "gpt_description_improver";
-    $this->tab = "administration";
-    $this->version = "1.0.0";
+    $this->tab = "product_features";
+    $this->version = "1.1.0";
     $this->author = "Simon Gardette";
     $this->need_instance = 0;
     $this->ps_versions_compliancy = ["min" => "1.7", "max" => _PS_VERSION_];
