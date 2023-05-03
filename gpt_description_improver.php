@@ -22,8 +22,6 @@ class GptDescriptionImprover extends Module
     $this->description = $this->l(
       "Improve product descriptions using ChatGPT."
     );
-    $this->$apiKey = "your_openai_api_key";
-
     $this->confirmUninstall = $this->l("Are you sure you want to uninstall?");
   }
 

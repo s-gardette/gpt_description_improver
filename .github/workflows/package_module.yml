@@ -4,9 +4,17 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+permissions:
+  contents: read
 
 jobs:
   package:
+    permissions:
+      contents: write
+      pull-requests: write
     runs-on: ubuntu-latest
 
     steps:
@@ -27,16 +35,12 @@ jobs:
           name: prestashop-module
           path: ./*.zip
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14
-
-      - name: Install release-drafter
-        run: npm install --global release-drafter
-
       - name: Draft a new release
-        run: release-drafter --version-template "v$NEXT_PATCH_VERSION"
+        uses: release-drafter/release-drafter@v5
+        with:
+          config-name: release-drafter.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create release
         uses: softprops/action-gh-release@v1
